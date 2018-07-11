@@ -1,0 +1,75 @@
+<form class="form-horizontal form-complex">
+    
+    <div class="control-group">
+        <label class="control-label" for="tower_api">Hostname</label>
+
+        <div class="controls">
+            <input type="text" class="input-xlarge" name="action.tower_api.param.hostname" id="tower_api" placeholder="tower.ansible.com" />
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <span class="help-block" style="display: block; position: static; width: auto; margin-left: 0;">
+                Ansible Tower hostname
+                (ex. your.tower.server). 
+                <br />
+                <br />
+            </span>
+        </div>
+    </div>
+       
+
+    <div class="control-group">
+        <label class="control-label" for="tower_api">Job ID</label>
+
+        <div class="controls">
+            <input type="text" class="input-xlarge" name="action.tower_api.param.job_id" id="tower_api" placeholder="12345" />
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <span class="help-block" style="display: block; position: static; width: auto; margin-left: 0;">
+                Ansible Tower Job Template ID
+                (ex. 12345). 
+                <br />
+                <br />
+            </span>
+        </div>
+    </div>
+
+
+    <div class="control-group">
+        <label class="control-label" for="tower_api">Extra Var Name</label>
+
+        <div class="controls">
+            <input type="text" class="input-xlarge" name="action.tower_api.param.var_name" id="tower_api" placeholder="ip" />
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <span class="help-block" style="display: block; position: static; width: auto; margin-left: 0;">
+                Supply the extra variable name that will be passed to Ansible Tower.
+                <br />
+                <br />
+            </span>
+        </div>
+    </div>
+
+
+    <div class="control-group">
+        <label class="control-label" for="tower_api">Extra Var Field Name</label>
+
+        <div class="controls">
+            <input type="text" class="input-xlarge" name="action.tower_api.param.var_field" id="tower_api" placeholder="src_ip" />
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <span class="help-block" style="display: block; position: static; width: auto; margin-left: 0;">
+                Supply the field/column name from the alert query search results to be used as the value for extra variable.
+                <br />
+                <br />
+            </span>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,19 @@
+<setup>
+<block title="Ansible Tower Credentials" endpoint="storage/passwords" entity="_new">
+  <input field="name">
+    <label>Username</label>
+    <type>text</type>
+  </input>
+
+  <input field="password">
+    <label>Password</label>
+    <type>password</type>
+  </input>
+
+  <!-- Remove the realm input field if your app is not using realm -->
+  <input field="realm">
+     <label>Realm</label>
+     <type>text</type>
+  </input>
+</block>
+</setup>
