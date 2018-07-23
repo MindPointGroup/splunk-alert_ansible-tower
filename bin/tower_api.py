@@ -11,7 +11,7 @@ __email__ = "keithr@mindpointgroup.com"
 __version__ = "1.0"
 
 #Securely retrieve Ansible Tower Credentials from Splunk REST API password endpoint
-def getCredentials(sessionKey):
+def getCredentials(sessionKey,realm):
    myapp = 'alert_ansible_tower'
    try:
       # list all credentials
@@ -23,7 +23,7 @@ def getCredentials(sessionKey):
 
    # return first set of credentials
    for i, c in entities.items():
-        if c['eai:acl'].get('app')  == myapp:
+        if c.get('realm')  == realm:
             return c['username'], c['clear_password']
 
    log("ERROR: No credentials have been found")
@@ -82,11 +82,14 @@ def main(payload):
         sessionKey = payload.get('session_key')
         
         #Retrieve Ansible Tower Hostname from Payload configuration
-	hostname = payload['configuration'].get('hostname')
+		hostname = payload['configuration'].get('hostname')
         
         #Retrieve Ansible Tower Job Template ID from Payload configuration
-	job_id = payload['configuration'].get('job_id')
+		job_id = payload['configuration'].get('job_id')
         
+        #Retrieve realm  from Payload configuration
+		realm = payload['configuration'].get('realm')
+
         #Retrieve Ansible Tower extra_vars Variable Name from Payload configuration
         var_name = payload['configuration'].get('var_name')
 
@@ -100,7 +103,7 @@ def main(payload):
         extra_vars = str(var_name) + ": " + str(var_value)
 	
         #Retrive Ansible Tower Credentials from Splunk REST API
-        username, password = getCredentials(sessionKey)
+        username, password = getCredentials(sessionKey,realm)
         
         #Submit Ansible Tower Job
 	tower_launch(hostname,username,password,job_id,extra_vars)
