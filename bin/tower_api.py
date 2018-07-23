@@ -79,33 +79,33 @@ def log(settings):
 
 def main(payload):
 	#Retrieve session key from payload to authenticate to Splunk REST API for secure credential retrieval
-        sessionKey = payload.get('session_key')
-        
-        #Retrieve Ansible Tower Hostname from Payload configuration
-		hostname = payload['configuration'].get('hostname')
-        
-        #Retrieve Ansible Tower Job Template ID from Payload configuration
-		job_id = payload['configuration'].get('job_id')
-        
-        #Retrieve realm  from Payload configuration
-		realm = payload['configuration'].get('realm')
+	sessionKey = payload.get('session_key')
 
-        #Retrieve Ansible Tower extra_vars Variable Name from Payload configuration
-        var_name = payload['configuration'].get('var_name')
+	#Retrieve Ansible Tower Hostname from Payload configuration
+	hostname = payload['configuration'].get('hostname')
 
-        #Retrieve Ansible Tower extra_vars Field to pull search value from Payload configuration
-        var_field = payload['configuration'].get('var_field')
+	#Retrieve Ansible Tower Job Template ID from Payload configuration
+	job_id = payload['configuration'].get('job_id')
 
-        #Retrieve Ansible Tower extra_vars value from Payload configuration
-        var_value = payload['result'].get(var_field)
-        
-        #Assign extra_vars variable a value
-        extra_vars = str(var_name) + ": " + str(var_value)
-	
-        #Retrive Ansible Tower Credentials from Splunk REST API
-        username, password = getCredentials(sessionKey,realm)
-        
-        #Submit Ansible Tower Job
+	#Retrieve realm  from Payload configuration
+	realm = payload['configuration'].get('realm')
+
+	#Retrieve Ansible Tower extra_vars Variable Name from Payload configuration
+	var_name = payload['configuration'].get('var_name')
+
+	#Retrieve Ansible Tower extra_vars Field to pull search value from Payload configuration
+	var_field = payload['configuration'].get('var_field')
+
+	#Retrieve Ansible Tower extra_vars value from Payload configuration
+	var_value = payload['result'].get(var_field)
+
+	#Assign extra_vars variable a value
+	extra_vars = str(var_name) + ": " + str(var_value)
+
+	#Retrive Ansible Tower Credentials from Splunk REST API
+	username, password = getCredentials(sessionKey,realm)
+
+	#Submit Ansible Tower Job
 	tower_launch(hostname,username,password,job_id,extra_vars)
 
 
